@@ -55,6 +55,7 @@ objectsApi.use((req, res, next) => {
   try {
     decoded = jwt.verify(token, SECRET, {
       issuer: new URL(`${protocol}//${hostname}:${port}`).origin,
+      algorithms: ["HS256"],  // We probably want to allow stronger but not weaker 
     });
   } catch (err) {
     console.error(err);
